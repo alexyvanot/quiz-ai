@@ -1,8 +1,9 @@
 # Backend Dockerfile
 FROM node:20-alpine
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --only=production
+COPY package.json ./
+COPY package-lock.json* ./
+RUN npm install --production
 COPY server.js ./
 EXPOSE 3001
 CMD ["npm", "start"]
