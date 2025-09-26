@@ -1,7 +1,7 @@
 # Quiz AI
 
 <div align="center">
-  <img src="./src/lib/assets/demo_init.png" alt="Quiz AI Demo" width="600">
+  <img src="./src/lib/assets/demo_init.png" alt="Quiz AI Demo" width="300">
 </div>
 
 ## Introduction
