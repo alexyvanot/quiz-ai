@@ -1,12 +1,10 @@
 <script lang="ts">
-  // Nouvelle approche Svelte 5 : callback props au lieu de createEventDispatcher
   interface Props {
     onSubmitQuiz?: (data: { text: string; numQuestions: string; numChoices: string }) => void;
   }
   
   let { onSubmitQuiz }: Props = $props();
   
-  // Variables d'état Svelte 5
   let text = $state('');
   let numQuestions = $state(5);
   let numChoices = $state(4);

@@ -1,5 +1,4 @@
 <script lang="ts">
-	// Nouvelle approche Svelte 5 : callback props au lieu de createEventDispatcher
 	interface Props {
 		quiz: { question: string; choices: string[]; answer: string }[];
 		onBackToForm?: () => void;
@@ -7,13 +6,11 @@
 	
 	let { quiz, onBackToForm }: Props = $props();
 
-	// Variables d'état Svelte 5
 	let currentQuestionIndex = $state(0);
 	let userAnswers = $state<string[]>([]);
 	let showResults = $state(false);
 	let selectedAnswer = $state('');
 
-	// Initialise le tableau de réponses
 	$effect(() => {
 		if (quiz && userAnswers.length === 0) {
 			userAnswers = new Array(quiz.length).fill('');
@@ -36,7 +33,6 @@
 		
 		if (isLastQuestion()) {
 			showResults = true;
-			// Le score sera automatiquement recalculé grâce à $derived
 		} else {
 			currentQuestionIndex++;
 			selectedAnswer = userAnswers[currentQuestionIndex] || '';
@@ -76,10 +72,10 @@
 </script>
 
 {#if !showResults}
-	<!-- Interface du quiz -->
+	<!-- ui -->
 	<div class="max-w-2xl mx-auto">
 		<div class="bg-gray-900 rounded-lg border border-gray-700 p-6">
-			<!-- Barre de progression -->
+			<!-- progressbar -->
 			<div class="bg-gray-800 h-2 rounded-full mb-6">
 				<div 
 					class="bg-blue-500 h-2 rounded-full transition-all duration-500"
@@ -87,7 +83,7 @@
 				></div>
 			</div>
 
-			<!-- En-tête -->
+			<!-- header -->
 			<div class="flex justify-between items-center mb-6">
 				<button
 					onclick={() => onBackToForm?.()}
@@ -102,13 +98,13 @@
 				</div>
 			</div>
 
-			<!-- Question -->
+			<!-- question -->
 			<div class="mb-8">
 				<h3 class="text-2xl font-bold text-white mb-6">
 					{currentQuestion().question}
 				</h3>
 
-				<!-- Choix de réponse -->
+				<!-- choice -->
 				<div class="space-y-3">
 					{#each currentQuestion().choices as choice, index}
 						<label 
@@ -157,10 +153,10 @@
 		</div>
 	</div>
 {:else}
-	<!-- Écran des résultats -->
+	<!-- results screen -->
 	<div class="max-w-2xl mx-auto">
 		<div class="bg-gray-900 rounded-lg border border-gray-700 p-8">
-			<!-- En-tête des résultats -->
+			<!-- result header -->
 			<div class="text-center mb-8">
 				<div class="text-6xl mb-4">
 					{#if score() >= quiz.length * 0.8}🏆
@@ -174,7 +170,7 @@
 				</div>
 			</div>
 
-			<!-- Score visuel -->
+			<!-- score -->
 			<div class="mb-8">
 				<div class="w-full bg-gray-700 rounded-full h-4">
 					<div 
@@ -195,7 +191,7 @@
 				</p>
 			</div>
 
-			<!-- Détail des réponses -->
+			<!-- details -->
 			<div class="mb-8">
 				<h3 class="text-xl font-bold text-white mb-4">📋 Détails des réponses</h3>
 				<div class="space-y-3 max-h-80 overflow-y-auto">
@@ -229,7 +225,7 @@
 				</div>
 			</div>
 
-			<!-- Actions -->
+			<!-- actions -->
 			<div class="flex gap-4">
 				<button
 					onclick={restartQuiz}

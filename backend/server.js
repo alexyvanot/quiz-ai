@@ -42,7 +42,7 @@ app.post('/api/quiz', async (req, res) => {
       });
     }
 
-    // Appel à Ollama avec gestion d'erreur
+    // ollama call
     const prompt = `Tu dois créer un quiz UNIQUEMENT basé sur le texte ci-dessous. IGNORE tous les textes précédents.
 
 NOUVEAU TEXTE À ANALYSER:
@@ -62,7 +62,7 @@ RÈGLES IMPORTANTES:
 - Questions basées UNIQUEMENT sur le texte ci-dessus
 - La "answer" doit être identique à un des "choices"`;
 
-    // Liste des modèles à essayer dans l'ordre (modèle plus intelligent d'abord)
+    // model list to try in order (smarter model first)
     const modelsToTry = ['llama3.2:latest', 'gemma:2b'];
     let quizData = null;
     let ollamaWorked = false;
@@ -75,27 +75,26 @@ RÈGLES IMPORTANTES:
           model,
           prompt,
           stream: false,
-          format: "json",  // Force le format JSON
+          format: "json", // force json
           options: {
-            temperature: model === 'llama3.2:latest' ? 0.1 : 0.05,  // Température plus basse pour plus de cohérence
+            temperature: model === 'llama3.2:latest' ? 0.1 : 0.05, // low temp for consistency and less hallucination
             top_p: 0.8,
             num_predict: model === 'llama3.2:latest' ? 2000 : 800,
             stop: model === 'llama3.2:latest' ? [] : ["\n\n", "**", "```"],
-            repeat_penalty: 1.1,  // Évite les répétitions
-            seed: Math.floor(Math.random() * 1000000)  // Seed aléatoire pour éviter la mémorisation
+            repeat_penalty: 1.1,  // avoid repetitions
+            seed: Math.floor(Math.random() * 1000000)  // random seed to avoid memorization
           }
-        }, { timeout: model === 'llama3.2:latest' ? 90000 : 45000 });  // 90 secondes pour llama3.2
+        }, { timeout: model === 'llama3.2:latest' ? 90000 : 45000 }); // 90 sec for llama3.2 because it's slower
 
         let responseText = ollamaResponse.data.response;
         console.log(`Réponse d'Ollama (${responseText.length} chars):`, responseText.substring(0, 300) + '...');
         
-        // Parse la réponse JSON forcée
+        // json parse
         if (typeof responseText === 'string') {
           try {
-            // Nettoie la réponse au cas où il y aurait des caractères parasites
             let cleanedResponse = responseText.trim();
             
-            // Si ça commence et finit par des crochets, c'est probablement bon
+            // check if it's a valid JSON array 
             if (cleanedResponse.startsWith('[') && cleanedResponse.endsWith(']')) {
               quizData = JSON.parse(cleanedResponse);
               ollamaWorked = true;
@@ -103,7 +102,7 @@ RÈGLES IMPORTANTES:
               break;
             }
             
-            // Si c'est un objet unique, on le transforme en tableau
+            // if it's a single object instead of array, we convert to array
             if (cleanedResponse.startsWith('{') && cleanedResponse.endsWith('}')) {
               const singleQuiz = JSON.parse(cleanedResponse);
               if (singleQuiz.question) {
@@ -114,34 +113,34 @@ RÈGLES IMPORTANTES:
               }
             }
             
-            // Cas spécial: llama3.2 peut générer un format différent avec question1, question2, etc.
+            // special case: llama3.2 might generate a different format with question1, question2, etc.
             if (responseText.includes('"question1"') || responseText.includes('"question"')) {
-              // Essayer de parser et convertir le format llama3.2
+              // Try to parse and convert the llama3.2 format
               try {
                 const parsedObj = JSON.parse(cleanedResponse);
                 quizData = [];
                 
-                // Chercher les questions numérotées (question1, question2, etc.)
+                // search for keys like question1, question2, etc....
                 Object.keys(parsedObj).forEach(key => {
                   if (key.startsWith('question') && parsedObj[key].question) {
                     const q = parsedObj[key];
                     if (q.question && q.choices && q.answer) {
                       
-                      // S'assurer qu'il y a exactement le bon nombre de choix
+                      // ensure choices is an array and has enough choices
                       let choices = Array.isArray(q.choices) ? [...q.choices] : [q.answer];
-                      
-                      // Ajouter des choix génériques si pas assez
+
+                      // Add generic choices if not enough
                       while (choices.length < numChoices) {
                         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
                         choices.push(`Option ${letters[choices.length]}`);
                       }
                       
-                      // Limiter au nombre demandé
+                      // Trim choices if too many
                       choices = choices.slice(0, numChoices);
-                      
-                      // S'assurer que la bonne réponse est dans les choix
+
+                      // Ensure the correct answer is in the choices
                       if (!choices.includes(q.answer)) {
-                        choices[0] = q.answer;  // Remplace le premier choix par la bonne réponse
+                        choices[0] = q.answer;  // Replace the first choice with the correct answer
                       }
                       
                       quizData.push({
@@ -162,8 +161,8 @@ RÈGLES IMPORTANTES:
                 console.log(`❌ Erreur parsing format spécial:`, specialParseError.message);
               }
             }
-            
-            // Sinon chercher un tableau JSON dans la réponse
+
+            // else try to find a JSON array in the response
             const jsonMatch = responseText.match(/\[[\s\S]*\]/);
             if (jsonMatch) {
               quizData = JSON.parse(jsonMatch[0]);
@@ -201,7 +200,7 @@ RÈGLES IMPORTANTES:
       });
     }
 
-    // Valide les données du quiz
+    // Validate quiz data structure
     const validQuiz = quizData.filter(q => 
       q.question && q.question.trim() !== '' && 
       q.choices && Array.isArray(q.choices) && q.choices.length >= 2 &&
