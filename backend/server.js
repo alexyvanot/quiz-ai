@@ -6,15 +6,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configuration Ollama - utilise host.docker.internal pour Docker
+// Configuration Ollama - use host.docker.internal for Docker
 const OLLAMA_BASE_URL = process.env.OLLAMA_URL || 'http://host.docker.internal:11434';
 
-// Route de test
+// test route
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Backend fonctionne !' });
 });
 
-// Route: generate quiz from text
+// Quiz generation route
 app.post('/api/quiz', async (req, res) => {
   console.log('Requête reçue:', req.body);
   try {
@@ -24,13 +24,13 @@ app.post('/api/quiz', async (req, res) => {
       return res.status(400).json({ error: 'Aucun texte fourni.' });
     }
 
-    // Paramètres quiz
+    // num questions and choices with defaults
     const numQuestions = parseInt(req.body.numQuestions) || 5;
     const numChoices = parseInt(req.body.numChoices) || 4;
 
     console.log(`Génération quiz: ${numQuestions} questions, ${numChoices} choix`);
 
-    // Test de connexion Ollama d'abord
+    // Test Ollama connection
     try {
       console.log('Test de connexion à Ollama...');
       const testResponse = await axios.get(`${OLLAMA_BASE_URL}/api/tags`, { timeout: 5000 });
@@ -42,7 +42,7 @@ app.post('/api/quiz', async (req, res) => {
       });
     }
 
-    // ollama call
+    // Ollama call
     const prompt = `Tu dois créer un quiz UNIQUEMENT basé sur le texte ci-dessous. IGNORE tous les textes précédents.
 
 NOUVEAU TEXTE À ANALYSER:
