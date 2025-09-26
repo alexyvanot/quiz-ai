@@ -1,9 +1,15 @@
 # Backend Dockerfile
 FROM node:20-alpine
+
+# Set working directory
 WORKDIR /app
+
+# Copy files
 COPY package.json ./
-COPY package-lock.json* ./
-RUN npm install --production
 COPY server.js ./
+
+# Expose port
 EXPOSE 3001
-CMD ["npm", "start"]
+
+# Install deps and start server at runtime
+CMD ["sh", "-c", "echo 'Installing dependencies...'; npm install --omit=dev && echo 'Dependencies installed. Starting server...' && node server.js"]
