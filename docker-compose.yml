@@ -1,6 +1,5 @@
 version: '3.8'
 
-# 🎯 Configuration par défaut : Ollama dans Docker - fonctionne partout
 services:
   ollama:
     image: ollama/ollama:latest
@@ -11,7 +10,6 @@ services:
     environment:
       - OLLAMA_HOST=0.0.0.0
 
-  # Service pour télécharger les modèles au premier démarrage
   ollama-setup:
     image: ollama/ollama:latest
     depends_on:
@@ -26,7 +24,7 @@ services:
         ollama pull llama3.2:latest &&
         ollama pull gemma:2b &&
         echo '✅ Modèles téléchargés avec succès!' &&
-        echo '🎯 Ollama prêt avec les modèles : llama3.2:latest, gemma:2b'
+        echo '⚡ Ollama prêt avec les modèles : llama3.2:latest, gemma:2b'
       "
     environment:
       - OLLAMA_HOST=http://ollama:11434
