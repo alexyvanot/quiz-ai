@@ -10,14 +10,14 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 
 ## Features
 
-🎯 **Smart Quiz Generation** - Generate quizzes from any text using AI
-🤖 **Multiple AI Models** - Supports llama3.2:latest and gemma:2b models  
-🎮 **Interactive Quiz Player** - Modern interface for taking quizzes
-📊 **Real-time Scoring** - Instant feedback and detailed results
-🐳 **Docker Ready** - Multiple deployment modes (default, GPU, local)
-⚡ **Auto Model Download** - Models download automatically on first run
-🌙 **Dark Theme** - Modern Discord-inspired interface
-🔧 **Configurable** - Customize number of questions and answer choices
+- 🎯 **Smart Quiz Generation** - Generate quizzes from any text using AI
+- 🤖 **Multiple AI Models** - Supports llama3.2:latest and gemma:2b models  
+- 🎮 **Interactive Quiz Player** - Modern interface for taking quizzes
+- 📊 **Real-time Scoring** - Instant feedback and detailed results
+- 🐳 **Docker Ready** - Multiple deployment modes (default, GPU, local)
+- ⚡ **Auto Model Download** - Models download automatically on first run
+- 🌙 **Dark Theme** - Modern Discord-inspired interface
+- 🔧 **Configurable** - Customize number of questions and answer choices
 
 ## Demo Screenshots
 
