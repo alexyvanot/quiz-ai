@@ -18,42 +18,50 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 - ⚡ **Auto Model Download** - Models download automatically on first run
 - 🌙 **Dark Theme** - Modern Discord-inspired interface
 - 🔧 **Configurable** - Customize number of questions and answer choices
-
 ## Demo Screenshots
+
 <details>
     <summary>Full Demo (GIF)</summary>
-    <div align="left">
-        <img src="./src/lib/assets/demo_quiz.gif" alt="Quiz AI Demo" width="350">
-        <br>
-        <a href="./prompts/story2.txt">Used text source here</a>
-    </div>
+    <blockquote>
+        <div align="left">
+            <img src="./src/lib/assets/demo_quiz.gif" alt="Quiz AI Demo" width="350">
+            <br>
+            <a href="./prompts/story2.txt">Used text source here</a>
+        </div>
+    </blockquote>
 </details>
 
 <details>
     <summary>Initial Form</summary>
-    <div align="left">
-        <img src="./src/lib/assets/demo_init.png" alt="Quiz AI Initial Form" width="350">
-        <br>
-        <em>Input text and configure quiz settings</em>
-    </div>
+    <blockquote>
+        <div align="left">
+            <img src="./src/lib/assets/demo_init.png" alt="Quiz AI Initial Form" width="350">
+            <br>
+            <em>Input text and configure quiz settings</em>
+        </div>
+    </blockquote>
 </details>
 
 <details>
     <summary>Interactive Quiz Player</summary>
-    <div align="left">
-        <img src="./src/lib/assets/demo_player.png" alt="Quiz Player" width="350">
-        <br>
-        <em>Interactive quiz player with progress tracking</em>
-    </div>
+    <blockquote>
+        <div align="left">
+            <img src="./src/lib/assets/demo_player.png" alt="Quiz Player" width="350">
+            <br>
+            <em>Interactive quiz player with progress tracking</em>
+        </div>
+    </blockquote>
 </details>
 
 <details>
     <summary>Results Screen</summary>
-    <div align="left">
-        <img src="./src/lib/assets/demo_result.png" alt="Results Screen" width="350">
-        <br>
-        <em>Detailed results with score breakdown and answer review</em>
-    </div>
+    <blockquote>
+        <div align="left">
+            <img src="./src/lib/assets/demo_result.png" alt="Results Screen" width="350">
+            <br>
+            <em>Detailed results with score breakdown and answer review</em>
+        </div>
+    </blockquote>
 </details>
 
 ## How to Install
