@@ -23,7 +23,7 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 <details>
     <summary>Full Demo (GIF)</summary>
     <div align="center">
-        <img src="./src/lib/assets/demo_quiz.gif" alt="Quiz AI Demo" width="600">
+        <img src="./src/lib/assets/demo_quiz.gif" alt="Quiz AI Demo" width="350">
         <br>
         <a href="./prompts/story2.txt">Used text source here</a>
     </div>
@@ -32,7 +32,7 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 <details>
     <summary>Initial Form</summary>
     <div align="center">
-        <img src="./src/lib/assets/demo_init.png" alt="Quiz AI Initial Form" width="600">
+        <img src="./src/lib/assets/demo_init.png" alt="Quiz AI Initial Form" width="350">
         <br>
         <em>Input text and configure quiz settings</em>
     </div>
@@ -41,7 +41,7 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 <details>
     <summary>Interactive Quiz Player</summary>
     <div align="center">
-        <img src="./src/lib/assets/demo_player.png" alt="Quiz Player" width="600">
+        <img src="./src/lib/assets/demo_player.png" alt="Quiz Player" width="350">
         <br>
         <em>Interactive quiz player with progress tracking</em>
     </div>
@@ -50,7 +50,7 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 <details>
     <summary>Results Screen</summary>
     <div align="center">
-        <img src="./src/lib/assets/demo_result.png" alt="Results Screen" width="600">
+        <img src="./src/lib/assets/demo_result.png" alt="Results Screen" width="350">
         <br>
         <em>Detailed results with score breakdown and answer review</em>
     </div>
