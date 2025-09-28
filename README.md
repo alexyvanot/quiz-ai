@@ -24,6 +24,7 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 <details>
     <summary>Full Demo (GIF)</summary>
         <img src="./src/lib/assets/demo_quiz.gif" alt="Quiz AI Demo" width="600">
+        Used text source [here](https://github.com/alexyvanot/quiz-ai/blob/main/prompts/story2.txt)
 </details>
 
 <details>
