@@ -18,6 +18,7 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 - ⚡ **Auto Model Download** - Models download automatically on first run
 - 🌙 **Dark Theme** - Modern Discord-inspired interface
 - 🔧 **Configurable** - Customize number of questions and answer choices
+
 ## Demo Screenshots
 
 <details>
