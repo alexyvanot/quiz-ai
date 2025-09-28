@@ -20,31 +20,40 @@ Quiz AI is an intelligent quiz generator that uses AI to create interactive quiz
 - 🔧 **Configurable** - Customize number of questions and answer choices
 
 ## Demo Screenshots
-
 <details>
     <summary>Full Demo (GIF)</summary>
+    <div align="center">
         <img src="./src/lib/assets/demo_quiz.gif" alt="Quiz AI Demo" width="600">
-        Used text source [here](https://github.com/alexyvanot/quiz-ai/blob/main/prompts/story2.txt)
+        <br>
+        <a href="./prompts/story2.txt">Used text source here</a>
+    </div>
 </details>
 
 <details>
     <summary>Initial Form</summary>
+    <div align="center">
         <img src="./src/lib/assets/demo_init.png" alt="Quiz AI Initial Form" width="600">
-
-    *Input text and configure quiz settings*
+        <br>
+        <em>Input text and configure quiz settings</em>
+    </div>
 </details>
 
 <details>
     <summary>Interactive Quiz Player</summary>
+    <div align="center">
         <img src="./src/lib/assets/demo_player.png" alt="Quiz Player" width="600">
-    *Interactive quiz player with progress tracking*
+        <br>
+        <em>Interactive quiz player with progress tracking</em>
+    </div>
 </details>
 
 <details>
     <summary>Results Screen</summary>
+    <div align="center">
         <img src="./src/lib/assets/demo_result.png" alt="Results Screen" width="600">
-
-    *Detailed results with score breakdown and answer review*
+        <br>
+        <em>Detailed results with score breakdown and answer review</em>
+    </div>
 </details>
 
 ## How to Install
