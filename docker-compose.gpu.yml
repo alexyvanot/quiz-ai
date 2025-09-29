@@ -25,17 +25,12 @@ services:
       - ollama_data:/root/.ollama
     entrypoint: >
       sh -c "
-        echo '🔄 Attente du démarrage d''Ollama...' &&
+        echo '🔄 Attente du démarrage d'\''Ollama...' &&
         sleep 30 &&
         echo '📥 Téléchargement des modèles AI...' &&
         ollama pull llama3.2:latest &&
         ollama pull gemma:2b &&
         echo '✅ Modèles téléchargés avec succès!' &&
-        echo '⚡ Ollama prêt avec les modèles : llama3.2:latest, gemma:2b'
-      "
-    environment:
-      - OLLAMA_HOST=http://ollama:11434
-    restart: 'no'
   
   backend:
     build: ./backend
